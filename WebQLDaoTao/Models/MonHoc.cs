@@ -10,6 +10,5 @@ namespace WebQLDaoTao.Models
         public string MaMH { get; set; }
         public string TenMH { get; set; }
         public int SoTiet {  get; set; }
-        
     }
 }

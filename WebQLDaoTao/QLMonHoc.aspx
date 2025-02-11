@@ -99,7 +99,7 @@
                     </div>
                     <asp:Label ID="lbThongBao" ForeColor="#cc3300" runat="server" Text=""></asp:Label>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Thoát</button>
+                        <asp:Button ID="btnDong" runat="server" class="btn btn-secondary" OnClientClick="hideModal();" Text="Đóng" />
                         <asp:Button ID="btThem" runat="server" Text="Thêm" CssClass="btn btn-primary" OnClick="btThem_Click" />
                     </div>
                 </div>
@@ -120,10 +120,12 @@
                 <asp:BoundField HeaderText="Số tiết" DataField="SoTiet" />
                 <asp:TemplateField>
                     <ItemTemplate>
-                        <asp:Button ID="btnEdit" runat="server" Text="Sửa" CommandName="Edit" CssClass="btn btn-success" />
+                        <asp:LinkButton ID="btnEdit" runat="server" CommandName="Edit" CssClass="btn btn-success">
+                            <i class="bi bi-pencil-square"></i> Sửa
+                        </asp:LinkButton>
                         <asp:LinkButton ID="btnDelete" OnClientClick="return confirm('Bạn có chắc muốn xóa môn học này?')" runat="server"
                             Text="Xóa" CommandName="Delete" CssClass="btn btn-danger">
-                            <i class="bi bi-trash"></i>
+                            <i class="bi bi-trash"></i> Xóa
                         </asp:LinkButton>
                     </ItemTemplate>
                     <EditItemTemplate>
@@ -137,4 +139,11 @@
                 CssClass="paging" />
         </asp:GridView>
     </div>
+    <script>
+        function hideModal() {
+            var modal = document.getElementById('modalThem'); // Lấy modal theo ID
+            var bootstrapModal = bootstrap.Modal.getInstance(modal); // Lấy thể hiện của modal
+            bootstrapModal.hide(); // Ẩn modal
+        }
+</script>
 </asp:Content>

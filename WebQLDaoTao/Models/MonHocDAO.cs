@@ -16,7 +16,6 @@ namespace WebQLDaoTao.Models
             return conn;
         }
         public SqlCommand cmd;
-
         public List<MonHoc> GetAll()
         {
 
