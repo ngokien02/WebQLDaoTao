@@ -16,6 +16,7 @@
             background-color: #555;
             color: white;
             padding: 15px;
+            font-size:20px;
         }
     </style>
     <asp:ContentPlaceHolder ID="head" runat="server">
@@ -70,7 +71,7 @@
             </div>
         </div>
         <footer class="container-fluid text-center">
-            <p>Sinh thực hiện: MSSV - HOTEN</p>
+            <p>Sinh viên thực hiện: 2321160068 - Ngô Trung Hiếu Kiên</p>
         </footer>
     </form>
 </body>

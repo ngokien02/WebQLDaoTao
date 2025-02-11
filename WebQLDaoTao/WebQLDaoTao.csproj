@@ -85,6 +85,8 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Khoa.cs" />
+    <Compile Include="Models\KhoaDAO.cs" />
     <Compile Include="Models\MonHoc.cs" />
     <Compile Include="Models\MonHocDAO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -68,8 +68,9 @@
             margin-bottom: 10px;
         }
     </style>
-    <h2>QUẢN LÝ MÔN HỌC</h2>
-    <div class="modal fade" id="modalThem" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <h2 style="margin: 0">QUẢN LÝ MÔN HỌC</h2>
+    <hr />
+    <div class="modal fade" id="modalThem" tabindex="-1" data-backdrop="static">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -99,8 +100,8 @@
                     </div>
                     <asp:Label ID="lbThongBao" ForeColor="#cc3300" runat="server" Text=""></asp:Label>
                     <div class="modal-footer">
-                        <asp:Button ID="btnDong" runat="server" class="btn btn-secondary" OnClientClick="hideModal();" Text="Đóng" />
-                        <asp:Button ID="btThem" runat="server" Text="Thêm" CssClass="btn btn-primary" OnClick="btThem_Click" />
+                        <asp:Button ID="btnDong" runat="server" class="btn btn-secondary" Text="Đóng" />
+                        <asp:Button ID="btnThem" runat="server" Text="Thêm" CssClass="btn btn-primary" UseSubmitBehavior="false" />
                     </div>
                 </div>
             </div>
@@ -114,36 +115,37 @@
             BorderColor="#3366CC" BorderStyle="None" BorderWidth="1px" CellPadding="4" AllowPaging="True"
             OnPageIndexChanging="gvMonHoc_PageIndexChanging"
             PageSize="5">
-            <Columns>
-                <asp:BoundField HeaderText="Mã môn học" DataField="MaMH" />
+            <columns>
+                <asp:BoundField HeaderText="Mã môn học" DataField="MaMH" ReadOnly="True" />
                 <asp:BoundField HeaderText="Tên môn học" DataField="TenMH" />
                 <asp:BoundField HeaderText="Số tiết" DataField="SoTiet" />
                 <asp:TemplateField>
-                    <ItemTemplate>
+                    <itemtemplate>
                         <asp:LinkButton ID="btnEdit" runat="server" CommandName="Edit" CssClass="btn btn-success">
-                            <i class="bi bi-pencil-square"></i> Sửa
+                            <i class="bi bi-pencil-square"></i>Sửa
                         </asp:LinkButton>
                         <asp:LinkButton ID="btnDelete" OnClientClick="return confirm('Bạn có chắc muốn xóa môn học này?')" runat="server"
                             Text="Xóa" CommandName="Delete" CssClass="btn btn-danger">
-                            <i class="bi bi-trash"></i> Xóa
+                            <i class="bi bi-trash"></i>Xóa
                         </asp:LinkButton>
-                    </ItemTemplate>
-                    <EditItemTemplate>
+                    </itemtemplate>
+                    <edititemtemplate>
                         <asp:Button ID="btnUpdate" runat="server" Text="Cập nhật" CommandName="Update" CssClass="btn btn-primary" />
                         <asp:Button ID="btnCancel" runat="server" Text="Hủy" CommandName="Cancel" CssClass="btn btn-warning" />
-                    </EditItemTemplate>
+                    </edititemtemplate>
                 </asp:TemplateField>
-            </Columns>
-            <HeaderStyle BackColor="#003399" Font-Bold="True" ForeColor="#CCCCFF" />
-            <PagerStyle BorderColor="#3366CC" BorderStyle="Solid" BorderWidth="1px" Font-Size="Large" HorizontalAlign="Center" VerticalAlign="Middle"
-                CssClass="paging" />
+            </columns>
+            <headerstyle backcolor="#003399" font-bold="True" forecolor="#CCCCFF" />
+            <pagerstyle bordercolor="#3366CC" borderstyle="Solid" borderwidth="1px" font-size="Large" horizontalalign="Center" verticalalign="Middle"
+                cssclass="paging" />
         </asp:GridView>
     </div>
     <script>
-        function hideModal() {
-            var modal = document.getElementById('modalThem'); // Lấy modal theo ID
-            var bootstrapModal = bootstrap.Modal.getInstance(modal); // Lấy thể hiện của modal
-            bootstrapModal.hide(); // Ẩn modal
-        }
-</script>
+        document.addEventListener("DOMContentLoaded", function () {
+            document.getElementById("<%= btnThem.ClientID %>").addEventListener("click", function (event) {
+                    event.preventDefault(); // Ngăn submit form
+                    __doPostBack('<%= btnThem.UniqueID %>', '');
+                });
+            });
+    </script>
 </asp:Content>

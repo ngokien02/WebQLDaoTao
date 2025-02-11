@@ -79,18 +79,19 @@ namespace WebQLDaoTao
             ClientScript.RegisterStartupScript(this.GetType(), "Popup", script, true);
         }
 
-        protected void btThem_Click(object sender, EventArgs e)
+        protected void btnThem_Click(object sender, EventArgs e)
         {
             try
             {
                 //lay thong tin mon hoc can them
-                string mamh = txtMaMH.Text;
+                string mamh = txtMaMH .Text;
                 string tenmh = txtTenMH.Text;
                 int sotiet = int.Parse(txtSoTiet.Text);
                 MonHoc mh = new MonHoc { MaMH = mamh, TenMH = tenmh, SoTiet = sotiet };
                 if (mhDAO.findById(mamh) != null)
                 {
                     lbThongBao.Text = "Mã môn học đã tồn tại. Chọn mã khác nhé";
+                    ScriptManager.RegisterStartupScript(this, GetType(), "ShowModal", "$('#modalThem').modal('show');", true);
                     return;
                 }
                 //goi phuong thuc them mon hoc vao CSDL cua lop MonHocDAO
@@ -100,6 +101,7 @@ namespace WebQLDaoTao
             catch (Exception ex)
             {
                 lbThongBao.Text = "Thao tác thêm môn học không thành công do lỗi dữ liệu";
+                ScriptManager.RegisterStartupScript(this, GetType(), "ShowModal", "$('#modalThem').modal('show');", true);
             }
             //liên kết dữ liệu cho gvMonHoc
             KhoiTaoDuLieu();
