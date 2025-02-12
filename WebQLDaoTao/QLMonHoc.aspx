@@ -3,71 +3,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="Main" runat="server">
-    <style>
-        .paging {
-            /*display: inline-block;*/
-            padding-left: 0;
-            margin: 20px 0;
-            border-radius: 4px;
-        }
 
-            .paging table > tbody > tr > td {
-                display: inline;
-            }
-
-                .paging table > tbody > tr > td > a,
-                .paging table > tbody > tr > td > span {
-                    position: relative;
-                    float: left;
-                    padding: 8px 12px;
-                    line-height: 1.42857143;
-                    text-decoration: none;
-                    color: #3366CC;
-                    background-color: #ffffff;
-                    border: 1px solid #dddddd;
-                    margin-left: -1px;
-                }
-
-                .paging table > tbody > tr > td > span {
-                    position: relative;
-                    float: left;
-                    padding: 8px 12px;
-                    line-height: 1.42857143;
-                    text-decoration: none;
-                    margin-left: -1px;
-                    z-index: 2;
-                    color: #aea79f;
-                    background-color: #f5f5f5;
-                    border-color: #dddddd;
-                    cursor: default;
-                }
-
-                .paging table > tbody > tr > td:first-child > a,
-                .paging table > tbody > tr > td:first-child > span {
-                    margin-left: 0;
-                    border-bottom-left-radius: 4px;
-                    border-top-left-radius: 4px;
-                }
-
-                .paging table > tbody > tr > td:last-child > a,
-                .paging table > tbody > tr > td:last-child > span {
-                    border-bottom-right-radius: 4px;
-                    border-top-right-radius: 4px;
-                }
-
-                .paging table > tbody > tr > td > a:hover,
-                .paging table > tbody > tr > td > span:hover,
-                .paging table > tbody > tr > td > a:focus,
-                .paging table > tbody > tr > td > span:focus {
-                    color: #3366CC;
-                    background-color: #eeeeee;
-                    border-color: #dddddd;
-                }
-
-        #Main_btnModal {
-            margin-bottom: 10px;
-        }
-    </style>
     <h2 style="margin: 0">QUẢN LÝ MÔN HỌC</h2>
     <hr />
     <div class="modal fade" id="modalThem" tabindex="-1" data-backdrop="static">
@@ -115,12 +51,12 @@
             BorderColor="#3366CC" BorderStyle="None" BorderWidth="1px" CellPadding="4" AllowPaging="True"
             OnPageIndexChanging="gvMonHoc_PageIndexChanging"
             PageSize="5">
-            <columns>
+            <Columns>
                 <asp:BoundField HeaderText="Mã môn học" DataField="MaMH" ReadOnly="True" />
                 <asp:BoundField HeaderText="Tên môn học" DataField="TenMH" />
                 <asp:BoundField HeaderText="Số tiết" DataField="SoTiet" />
                 <asp:TemplateField>
-                    <itemtemplate>
+                    <ItemTemplate>
                         <asp:LinkButton ID="btnEdit" runat="server" CommandName="Edit" CssClass="btn btn-success">
                             <i class="bi bi-pencil-square"></i>Sửa
                         </asp:LinkButton>
@@ -128,24 +64,24 @@
                             Text="Xóa" CommandName="Delete" CssClass="btn btn-danger">
                             <i class="bi bi-trash"></i>Xóa
                         </asp:LinkButton>
-                    </itemtemplate>
-                    <edititemtemplate>
+                    </ItemTemplate>
+                    <EditItemTemplate>
                         <asp:Button ID="btnUpdate" runat="server" Text="Cập nhật" CommandName="Update" CssClass="btn btn-primary" />
                         <asp:Button ID="btnCancel" runat="server" Text="Hủy" CommandName="Cancel" CssClass="btn btn-warning" />
-                    </edititemtemplate>
+                    </EditItemTemplate>
                 </asp:TemplateField>
-            </columns>
-            <headerstyle backcolor="#003399" font-bold="True" forecolor="#CCCCFF" />
-            <pagerstyle bordercolor="#3366CC" borderstyle="Solid" borderwidth="1px" font-size="Large" horizontalalign="Center" verticalalign="Middle"
-                cssclass="paging" />
+            </Columns>
+            <HeaderStyle BackColor="#003399" Font-Bold="True" ForeColor="#CCCCFF" />
+            <PagerStyle BorderColor="#3366CC" BorderStyle="Solid" BorderWidth="1px" Font-Size="Large" HorizontalAlign="Center" VerticalAlign="Middle"
+                CssClass="paging" />
         </asp:GridView>
     </div>
     <script>
         document.addEventListener("DOMContentLoaded", function () {
             document.getElementById("<%= btnThem.ClientID %>").addEventListener("click", function (event) {
-                    event.preventDefault(); // Ngăn submit form
-                    __doPostBack('<%= btnThem.UniqueID %>', '');
-                });
+                event.preventDefault(); // Ngăn submit form
+                __doPostBack('<%= btnThem.UniqueID %>', '');
             });
+        });
     </script>
 </asp:Content>

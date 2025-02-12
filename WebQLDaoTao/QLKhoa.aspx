@@ -4,71 +4,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="main" runat="server">
-    <style>
-        .paging {
-            /*display: inline-block;*/
-            padding-left: 0;
-            margin: 20px 0;
-            border-radius: 4px;
-        }
 
-            .paging table > tbody > tr > td {
-                display: inline;
-            }
-
-                .paging table > tbody > tr > td > a,
-                .paging table > tbody > tr > td > span {
-                    position: relative;
-                    float: left;
-                    padding: 8px 12px;
-                    line-height: 1.42857143;
-                    text-decoration: none;
-                    color: #3366CC;
-                    background-color: #ffffff;
-                    border: 1px solid #dddddd;
-                    margin-left: -1px;
-                }
-
-                .paging table > tbody > tr > td > span {
-                    position: relative;
-                    float: left;
-                    padding: 8px 12px;
-                    line-height: 1.42857143;
-                    text-decoration: none;
-                    margin-left: -1px;
-                    z-index: 2;
-                    color: #aea79f;
-                    background-color: #f5f5f5;
-                    border-color: #dddddd;
-                    cursor: default;
-                }
-
-                .paging table > tbody > tr > td:first-child > a,
-                .paging table > tbody > tr > td:first-child > span {
-                    margin-left: 0;
-                    border-bottom-left-radius: 4px;
-                    border-top-left-radius: 4px;
-                }
-
-                .paging table > tbody > tr > td:last-child > a,
-                .paging table > tbody > tr > td:last-child > span {
-                    border-bottom-right-radius: 4px;
-                    border-top-right-radius: 4px;
-                }
-
-                .paging table > tbody > tr > td > a:hover,
-                .paging table > tbody > tr > td > span:hover,
-                .paging table > tbody > tr > td > a:focus,
-                .paging table > tbody > tr > td > span:focus {
-                    color: #3366CC;
-                    background-color: #eeeeee;
-                    border-color: #dddddd;
-                }
-
-        #Main_btnModal {
-            margin-bottom: 10px;
-        }
-    </style>
     <h2 style="margin: 0;">TRANG QUẢN TRỊ KHOA </h2>
     <hr />
     <div class="modal fade" id="modalThem" tabindex="-1" data-backdrop="static">

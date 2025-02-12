@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data.SqlClient;
+using System.Diagnostics;
 using System.Linq;
 using System.Web;
 
@@ -66,7 +67,7 @@ namespace WebQLDaoTao.Models
             return dsSinhVien;
         }
         //phuong thuc cập nhật thông tin sinh vien vao CSDL
-        public int Update(string masv, string hosv, string tensv, Boolean gioitinh, DateTime ngaysinh, 
+        public int Update(string masv, string hosv, string tensv, bool gioitinh, DateTime ngaysinh, 
             string noisinh, string diachi, string makh)
         {
             var conn = Connect();
@@ -83,6 +84,7 @@ namespace WebQLDaoTao.Models
             cmd.Parameters.AddWithValue("@diachi", diachi);
             cmd.Parameters.AddWithValue("@makh", makh);
 
+            Debug.WriteLine(gioitinh);
             //3.thuc thi ket qua;
             return cmd.ExecuteNonQuery();
         }
