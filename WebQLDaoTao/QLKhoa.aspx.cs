@@ -49,5 +49,29 @@ namespace WebQLDaoTao
                 ScriptManager.RegisterStartupScript(this, GetType(), "ShowModal", "$('#modalThem').modal('show');", true);
             }
         }
+
+        protected void odsKhoa_Deleted(object sender, ObjectDataSourceStatusEventArgs e)
+        {
+            if (e.ReturnValue != null && int.TryParse(e.ReturnValue.ToString(), out int result))
+            {
+                if (result == -1)
+                {
+                    lbError.Text = "Không thể xóa khoa do có sinh viên đăng ký.";
+                }
+                else if (result == 0)
+                {
+                    lbError.Text = "Không tìm thấy khoa cần xóa.";
+                }
+                else
+                {
+                    lbError.Text = "Xóa thành công.";
+                    lbError.ForeColor = System.Drawing.Color.Green;
+                }
+            }
+            else
+            {
+                lbError.Text = "Đã xảy ra lỗi không xác định.";
+            }
+        }
     }
 }

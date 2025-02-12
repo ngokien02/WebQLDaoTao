@@ -108,7 +108,7 @@
     <%-- su dung objectdatasource de lien ket du lieu --%>
     <asp:ObjectDataSource ID="odsKhoa" runat="server"
         DeleteMethod="Delete" InsertMethod="Insert" SelectMethod="GetAll" TypeName="WebQLDaoTao.Models.KhoaDAO"
-        UpdateMethod="Update">
+        UpdateMethod="Update" OnDeleted="odsKhoa_Deleted">
         <InsertParameters>
             <asp:Parameter Name="makh" Type="String" />
             <asp:Parameter Name="tenkh" Type="String" />
@@ -140,6 +140,7 @@
         <PagerStyle BorderColor="#3366CC" BorderStyle="Solid" BorderWidth="1px" Font-Size="Large"
             HorizontalAlign="Center" VerticalAlign="Middle" CssClass="paging" />
     </asp:GridView>
+    <asp:Label ID="lbError" runat="server" ForeColor="Red" Font-Size="Medium"></asp:Label>
     <script>
         document.addEventListener("DOMContentLoaded", function () {
             document.getElementById("<%= btnThem.ClientID %>").addEventListener("click", function (event) {

@@ -34,26 +34,33 @@ namespace WebQLDaoTao.Models
             }
             return ds;
         }
-        public int Update(Khoa kh)
+        public int Update(string makh, string tenkh)
         {
             var conn = Connect();
             conn.Open();
             cmd = new SqlCommand("update Khoa set tenkh = @tenkh where makh=@makh", conn);
-            cmd.Parameters.AddWithValue("@makh", kh.MaKh);
-            cmd.Parameters.AddWithValue("@tenkh", kh.TenKh);
+            cmd.Parameters.AddWithValue("@makh", makh);
+            cmd.Parameters.AddWithValue("@tenkh", tenkh);
             //3.thuc thi ket qua;
             return cmd.ExecuteNonQuery();
         }
-        public int Delete(Khoa kh)
+        public int Delete(string makh)
         {
-            //1.Mo ket noi CSDL
-            var conn = Connect();
-            conn.Open();
-            //2.tao truy van
-            cmd = new SqlCommand("delete from Khoa where makh=@makh", conn);
-            cmd.Parameters.AddWithValue("@makh", kh.MaKh);
-            //3.thuc thi ket qua;
-            return cmd.ExecuteNonQuery();
+            try
+            {
+                //1.Mo ket noi CSDL
+                var conn = Connect();
+                conn.Open();
+                //2.tao truy van
+                cmd = new SqlCommand("delete from Khoa where makh=@makh", conn);
+                cmd.Parameters.AddWithValue("@makh", makh);
+                //3.thuc thi ket qua;
+                return cmd.ExecuteNonQuery();
+            }
+            catch (Exception e)
+            {
+                return -1;
+            }
         }
 
         public Khoa findByMaKh(string makh)
