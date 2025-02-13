@@ -6,7 +6,7 @@
     <%-- dung ham eval("tencot") va toan tu 3 ngoi de xu ly binding gioi tinh
         format lai ngay sinh 
         dung scrollbars de format lai gridview --%>
-    <h2>TRANG QUẢN LÝ SINH VIÊN</h2>
+    <h2>TRANG QUẢN LÝ SINH VIÊN</h2> <hr />
     <asp:ObjectDataSource ID="odsSinhVien" runat="server" DeleteMethod="Delete" InsertMethod="Insert"
         SelectMethod="getAll" TypeName="WebQLDaoTao.Models.SinhVienDAO" UpdateMethod="Update">
         <DeleteParameters>
@@ -33,9 +33,10 @@
             <asp:Parameter Name="makh" Type="String" />
         </UpdateParameters>
     </asp:ObjectDataSource>
-    <asp:GridView ID="gvSinhVien" runat="server" AllowPaging="True" DataSourceID="odsSinhVien" CssClass="table"
+    <asp:GridView ID="gvSinhVien" runat="server" AllowPaging="True" CssClass="table"
         BackColor="White" BorderColor="#3366CC" BorderStyle="None" BorderWidth="1px" CellPadding="4"
-        Width="1000px" RowStyle-Wrap="false" AutoGenerateColumns="False" DataKeyNames="Masv" OnRowUpdating="gvSinhVien_RowUpdating">
+        Width="1000px" RowStyle-Wrap="false" AutoGenerateColumns="False" DataKeyNames="Masv" 
+        DataSourceID="odsSinhVien" OnRowUpdating="gvSinhVien_RowUpdating">
         <Columns>
             <asp:BoundField DataField="masv" HeaderText="Mã SV" ReadOnly="True" />
             <asp:BoundField DataField="hosv" HeaderText="Họ SV" />
@@ -76,4 +77,6 @@
 
         <RowStyle Wrap="False"></RowStyle>
     </asp:GridView>
+    <asp:LinqDataSource ID="LinqDataSource1" runat="server" EntityTypeName="">
+    </asp:LinqDataSource>
 </asp:Content>
