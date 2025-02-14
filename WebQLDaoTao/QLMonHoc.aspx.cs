@@ -18,7 +18,10 @@ namespace WebQLDaoTao
                 KhoiTaoDuLieu();
             }
         }
-
+        protected void ShowModal()
+        {
+            ScriptManager.RegisterStartupScript(this, GetType(), "ShowModal", "$('#modalThem').modal('show');", true);
+        }
         private void KhoiTaoDuLieu()
         {
             gvMonHoc.DataSource = mhDAO.GetAll();
@@ -84,24 +87,25 @@ namespace WebQLDaoTao
             try
             {
                 //lay thong tin mon hoc can them
-                string mamh = txtMaMH .Text;
+                string mamh = txtMaMH.Text;
                 string tenmh = txtTenMH.Text;
                 int sotiet = int.Parse(txtSoTiet.Text);
                 MonHoc mh = new MonHoc { MaMH = mamh, TenMH = tenmh, SoTiet = sotiet };
                 if (mhDAO.findById(mamh) != null)
                 {
+                    ShowModal();
                     lbThongBao.Text = "Mã môn học đã tồn tại. Chọn mã khác nhé";
-                    ScriptManager.RegisterStartupScript(this, GetType(), "ShowModal", "$('#modalThem').modal('show');", true);
                     return;
                 }
                 //goi phuong thuc them mon hoc vao CSDL cua lop MonHocDAO
                 mhDAO.Insert(mh);//lenh them du lieu
+                ShowModal();
                 lbThongBao.Text = "Đã thêm 1 môn học";
             }
             catch (Exception ex)
             {
+                ShowModal();
                 lbThongBao.Text = "Thao tác thêm môn học không thành công do lỗi dữ liệu";
-                ScriptManager.RegisterStartupScript(this, GetType(), "ShowModal", "$('#modalThem').modal('show');", true);
             }
             //liên kết dữ liệu cho gvMonHoc
             KhoiTaoDuLieu();

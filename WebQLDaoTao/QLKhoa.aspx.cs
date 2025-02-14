@@ -14,7 +14,10 @@ namespace WebQLDaoTao
         {
 
         }
-
+        protected void ShowModal()
+        {
+            ScriptManager.RegisterStartupScript(this, GetType(), "ShowModal", "$('#modalThem').modal('show');", true);
+        }
         protected void btnModal_Click(object sender, EventArgs e)
         {
             string script = "$('#modalThem').modal('show');";
@@ -25,16 +28,16 @@ namespace WebQLDaoTao
         {
             if (string.IsNullOrWhiteSpace(txtMaKH.Text) || string.IsNullOrWhiteSpace(txtTenKH.Text))
             {
+                ShowModal();
                 lbThongBao.Text = "Vui lòng nhập đầy đủ dữ liệu.";
-                ScriptManager.RegisterStartupScript(this, GetType(), "ShowModal", "$('#modalThem').modal('show');", true);
                 return;
             }
             try
             {
                 if (khoaDAO.findByMaKh(txtMaKH.Text) != null)
                 {
+                    ShowModal();
                     lbThongBao.Text = "Mã khoa không được trùng, vui lòng đổi lại.";
-                    ScriptManager.RegisterStartupScript(this, GetType(), "ShowModal", "$('#modalThem').modal('show');", true);
                     return;
                 }
                 odsKhoa.InsertParameters["makh"].DefaultValue = txtMaKH.Text;
@@ -44,9 +47,8 @@ namespace WebQLDaoTao
             }
             catch (Exception ex)
             {
-
+                ShowModal();
                 lbThongBao.Text = "Thêm không thành công. Hãy thử nhập lại dữ liệu.";
-                ScriptManager.RegisterStartupScript(this, GetType(), "ShowModal", "$('#modalThem').modal('show');", true);
             }
         }
 

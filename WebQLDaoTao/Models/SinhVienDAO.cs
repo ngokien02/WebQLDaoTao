@@ -98,5 +98,32 @@ namespace WebQLDaoTao.Models
             //3.thuc thi ket qua;
             return cmd.ExecuteNonQuery();
         }
+        public SinhVien findByMasv(string masv)
+        {
+            SinhVien kq = null;
+
+            var conn = Connect();
+            conn.Open();
+
+            cmd = new SqlCommand("select * from sinhvien where masv=@masv", conn);
+            cmd.Parameters.AddWithValue("@masv", masv);
+
+            SqlDataReader dr = cmd.ExecuteReader();
+            if (dr.Read())
+            {
+                kq = new SinhVien
+                {
+                    MaSV = dr["masv"].ToString(),
+                    HoSV = dr["hosv"].ToString(),
+                    TenSV = dr["tensv"].ToString(),
+                    GioiTinh = (bool)dr["gioitinh"],
+                    NgaySinh = (DateTime)dr["ngaysinh"],
+                    NoiSinh = dr["noisinh"].ToString(),
+                    DiaChi = dr["diachi"].ToString(),
+                    MaKH = dr["makh"].ToString()
+                };
+            }
+            return kq;
+        }
     }
 }
