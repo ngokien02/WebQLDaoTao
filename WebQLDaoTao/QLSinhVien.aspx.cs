@@ -21,6 +21,10 @@ namespace WebQLDaoTao
             CheckBox cbGioiTinh = (CheckBox)gvSinhVien.Rows[e.RowIndex].FindControl("cbGioiTinh");
             bool gioiTinh = cbGioiTinh.Checked;
             e.NewValues["gioitinh"] = gioiTinh;
+
+            DropDownList ddlKhoa = (DropDownList)gvSinhVien.Rows[e.RowIndex].FindControl("ddlKhoa");
+            string makh = ddlKhoa.SelectedValue as string;
+            e.NewValues["makh"] = makh;
         }
     }
 }

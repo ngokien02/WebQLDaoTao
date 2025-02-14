@@ -52,7 +52,19 @@
             <asp:BoundField DataField="ngaysinh" HeaderText="Ngày sinh" />
             <asp:BoundField DataField="noisinh" HeaderText="Nơi sinh" />
             <asp:BoundField DataField="diachi" HeaderText="Địa chỉ" />
-            <asp:BoundField DataField="makh" HeaderText="Mã khoa" />
+            <%--<asp:BoundField DataField="makh" HeaderText="Mã khoa" />--%>
+            <asp:TemplateField HeaderText="Mã khoa">
+                <ItemTemplate>
+                    <asp:Label ID="lbMaKh" runat="server" Text='<%# Bind("makh") %>'></asp:Label>
+                </ItemTemplate>
+                <EditItemTemplate>
+                    <asp:DropDownList ID="ddlKhoa" runat="server" AutoPostBack="True" DataSourceID="ObjectDataSource2" 
+                        DataTextField="TenKh" DataValueField="MaKh">
+                    </asp:DropDownList>
+                    <asp:ObjectDataSource ID="ObjectDataSource2" runat="server" SelectMethod="GetAll" TypeName="WebQLDaoTao.Models.KhoaDAO"></asp:ObjectDataSource>
+                    <asp:ObjectDataSource ID="ObjectDataSource1" runat="server" SelectMethod="getAll" TypeName="WebQLDaoTao.Models.SinhVienDAO"></asp:ObjectDataSource>
+                </EditItemTemplate>
+            </asp:TemplateField>
             <asp:TemplateField HeaderText="Thao tác" ItemStyle-Width="250px">
                 <ItemTemplate>
                     <asp:LinkButton ID="btnEdit" runat="server" CommandName="Edit" CssClass="btn btn-success">
