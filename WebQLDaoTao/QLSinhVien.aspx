@@ -54,7 +54,6 @@
                 <asp:BoundField DataField="ngaysinh" HeaderText="Ngày sinh" DataFormatString="{0: dd/MM/yyyy}" />
                 <asp:BoundField DataField="noisinh" HeaderText="Nơi sinh" />
                 <asp:BoundField DataField="diachi" HeaderText="Địa chỉ" />
-                <%--<asp:BoundField DataField="makh" HeaderText="Mã khoa" />--%>
                 <asp:TemplateField HeaderText="Mã khoa">
                     <ItemTemplate>
                         <asp:Label ID="lbMaKh" runat="server" Text='<%# Bind("makh") %>'></asp:Label>
