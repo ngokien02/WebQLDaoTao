@@ -39,7 +39,7 @@
                                 <li><a href="QLSinhVien.aspx">Sinh viên</a></li>
                             </ul>
                         </li>
-                        <li><a href="#">Quản lý điểm thi</a></li>
+                        <li><a href="QLDiem.aspx">Quản lý điểm thi</a></li>
                     </ul>
                 </div>
             </div>
@@ -52,7 +52,7 @@
                         <a href="QLMonHoc.aspx" class="list-group-item"><i class="bi bi-card-checklist"></i>Quản lý môn học</a>
                         <a href="QLKhoa.aspx" class="list-group-item"><span class="glyphicon glyphicon-book"></span>Quản lý khoa</a>
                         <a href="QLSinhVien.aspx" class="list-group-item"><span class="glyphicon glyphicon-user"></span>Quản lý sinh viên</a>
-                        <a href="#" class="list-group-item"><span class="glyphicon glyphicon-edit"></span>Quản lý điểm</a>
+                        <a href="QLDiem.aspx" class="list-group-item"><span class="glyphicon glyphicon-edit"></span>Quản lý điểm</a>
                     </div>
                 </div>
                 <div class="col-md-9">
