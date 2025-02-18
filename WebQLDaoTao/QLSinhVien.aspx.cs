@@ -54,13 +54,14 @@ namespace WebQLDaoTao
 
         protected void btnThem_Click(object sender, EventArgs e)
         {
+            lbThongBao.ForeColor = System.Drawing.Color.Red;
             foreach (Control ctr in this.Controls)
             {
                 if (ctr is TextBox tbx && string.IsNullOrEmpty(tbx.Text)
                     || string.IsNullOrWhiteSpace(txtNgaysinh.Text))
                 {
-                     ShowModal();
-                     lbThongBao.Text = "Vui lòng nhập đầy đủ dữ liệu";
+                    ShowModal();
+                    lbThongBao.Text = "Vui lòng nhập đầy đủ dữ liệu";
                     return;
                 }
             }

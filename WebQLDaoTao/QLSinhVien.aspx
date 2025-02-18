@@ -71,7 +71,7 @@
                                 </asp:DropDownList>
                             </div>
                         </div>
-                        <asp:Label ID="lbThongBao" ForeColor="#cc3300" runat="server" Text="" CssClass="lbThongBao"></asp:Label>
+                        <asp:Label ID="lbThongBao" runat="server" Text="" CssClass="lbThongBao"></asp:Label>
                     </div>
                     <div class="modal-footer">
                         <asp:Button ID="btnDong" runat="server" class="btn btn-secondary" Text="Đóng" />
@@ -124,8 +124,8 @@
 
             <Columns>
                 <asp:BoundField DataField="masv" HeaderText="Mã SV" ReadOnly="True" ItemStyle-Width="70px" />
-                <asp:BoundField DataField="hosv" HeaderText="Họ SV" />
-                <asp:BoundField DataField="tensv" HeaderText="Tên SV" ItemStyle-Width="80px" />
+                <asp:BoundField DataField="hosv" HeaderText="Họ SV" ControlStyle-Width="150px" />
+                <asp:BoundField DataField="tensv" HeaderText="Tên SV" ItemStyle-Width="80px" ControlStyle-Width="80px" />
                 <asp:TemplateField HeaderText="Giới tính" ItemStyle-Width="90px">
                     <ItemTemplate>
                         <asp:Label ID="lbGioiTinh" runat="server" Text='<%# Convert.ToBoolean(Eval("gioitinh")) ? "Nam" : "Nữ" %>'></asp:Label>
@@ -135,7 +135,7 @@
                     </EditItemTemplate>
                 </asp:TemplateField>
                 <asp:BoundField DataField="ngaysinh" HeaderText="Ngày sinh" DataFormatString="{0: dd/MM/yyyy}" />
-                <asp:BoundField DataField="noisinh" HeaderText="Nơi sinh" />
+                <asp:BoundField DataField="noisinh" HeaderText="Nơi sinh" ControlStyle-Width="100px" />
                 <asp:BoundField DataField="diachi" HeaderText="Địa chỉ" />
                 <asp:TemplateField HeaderText="Khoa">
                     <ItemTemplate>

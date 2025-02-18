@@ -37,7 +37,8 @@
                     <asp:Label ID="lbThongBao" ForeColor="#cc3300" runat="server" Text=""></asp:Label>
                     <div class="modal-footer">
                         <asp:Button ID="btnDong" runat="server" class="btn btn-secondary" Text="Đóng" />
-                        <asp:Button ID="btnThem" runat="server" Text="Thêm" CssClass="btn btn-primary" UseSubmitBehavior="false" />
+                        <asp:Button ID="btnThem" runat="server" Text="Thêm" CssClass="btn btn-primary" UseSubmitBehavior="false" 
+                            OnClick="btnThem_Click" />
                     </div>
                 </div>
             </div>

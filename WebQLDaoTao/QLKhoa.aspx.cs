@@ -54,6 +54,7 @@ namespace WebQLDaoTao
 
         protected void odsKhoa_Deleted(object sender, ObjectDataSourceStatusEventArgs e)
         {
+            lbError.ForeColor = System.Drawing.Color.Red;
             if (e.ReturnValue != null && int.TryParse(e.ReturnValue.ToString(), out int result))
             {
                 if (result == -1)

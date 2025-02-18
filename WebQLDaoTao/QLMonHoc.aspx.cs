@@ -84,6 +84,16 @@ namespace WebQLDaoTao
 
         protected void btnThem_Click(object sender, EventArgs e)
         {
+            lbThongBao.ForeColor = System.Drawing.Color.Red;
+            foreach (Control ctr in this.Controls)
+            {
+                if (ctr is TextBox tbx && string.IsNullOrEmpty(tbx.Text))
+                {
+                    ShowModal();
+                    lbThongBao.Text = "Vui lòng nhập đầy đủ dữ liệu";
+                    return;
+                }
+            }
             try
             {
                 //lay thong tin mon hoc can them
@@ -101,6 +111,7 @@ namespace WebQLDaoTao
                 mhDAO.Insert(mh);//lenh them du lieu
                 ShowModal();
                 lbThongBao.Text = "Đã thêm 1 môn học";
+                lbThongBao.ForeColor = System.Drawing.Color.Green;
             }
             catch (Exception ex)
             {
