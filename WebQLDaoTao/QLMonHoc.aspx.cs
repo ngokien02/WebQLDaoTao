@@ -72,7 +72,8 @@ namespace WebQLDaoTao
             }
             catch (Exception ex)
             {
-                Response.Write("<script> alert('Không thể xóa môn học này')</script>");
+                lbError.Text = "Không thể xóa môn học này do đã có điểm được lưu.";
+                return;
             }
         }
 

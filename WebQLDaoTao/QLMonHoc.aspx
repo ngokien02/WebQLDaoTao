@@ -37,7 +37,7 @@
                     <asp:Label ID="lbThongBao" ForeColor="#cc3300" runat="server" Text=""></asp:Label>
                     <div class="modal-footer">
                         <asp:Button ID="btnDong" runat="server" class="btn btn-secondary" Text="Đóng" />
-                        <asp:Button ID="btnThem" runat="server" Text="Thêm" CssClass="btn btn-primary" UseSubmitBehavior="false" 
+                        <asp:Button ID="btnThem" runat="server" Text="Thêm" CssClass="btn btn-primary" UseSubmitBehavior="false"
                             OnClick="btnThem_Click" />
                     </div>
                 </div>
@@ -76,6 +76,7 @@
             <PagerStyle BorderColor="#3366CC" BorderStyle="Solid" BorderWidth="1px" Font-Size="Large" HorizontalAlign="Center" VerticalAlign="Middle"
                 CssClass="paging" />
         </asp:GridView>
+        <asp:Label ID="lbError" ForeColor="#cc3300" runat="server" Text="" Font-Size="Medium"></asp:Label>
     </div>
     <script>
         document.addEventListener("DOMContentLoaded", function () {
