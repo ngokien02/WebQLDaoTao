@@ -48,11 +48,12 @@
             </asp:TemplateField>
         </Columns>
         <HeaderStyle BackColor="#003399" Font-Bold="True" ForeColor="#CCCCFF" />
-        <PagerStyle BorderColor="#3366CC" BorderStyle="Solid" BorderWidth="1px" Font-Size="Large" HorizontalAlign="Center" VerticalAlign="Middle"
-            CssClass="paging" />
+        <PagerStyle BorderColor="#3366CC" BorderStyle="Solid" BorderWidth="1px" Font-Size="Large" HorizontalAlign="Center" 
+            VerticalAlign="Middle" CssClass="paging" />
     </asp:GridView>
     <asp:Button ID="btnLuu" runat="server" CssClass="btn btn-success" Text="Lưu điểm" OnClick="btnLuu_Click" />
-    <asp:Button ID="btnXoa" runat="server" CssClass="btn btn-danger" Text="Xóa điểm" OnClick="btnXoa_Click" />
+    <asp:Button ID="btnXoa" runat="server" CssClass="btn btn-danger" Text="Xóa điểm" 
+        OnClientClick="return confirm('Bạn có chắc muốn xóa hết điểm đã chọn?')" OnClick="btnXoa_Click" />
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="QLSV" runat="server">
 </asp:Content>
