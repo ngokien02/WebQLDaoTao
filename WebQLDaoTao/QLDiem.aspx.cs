@@ -32,6 +32,7 @@ namespace WebQLDaoTao
 
         protected void btnXoa_Click(object sender, EventArgs e)
         {
+            int count = 0;
             for (int i = 0; i < Count(); i++)
             {
                 bool check = ((CheckBox)gvKetQua.Rows[i].FindControl("cbxChon")).Checked;
@@ -40,8 +41,11 @@ namespace WebQLDaoTao
                     int id = int.Parse(gvKetQua.DataKeys[i].Value.ToString());
                     kqDAO.Delete(id);
                     gvKetQua.DataBind();
+                    count++;
                 }
             }
+            lbThongBaoXoa.Text = $"Đã xóa thành công {count} điểm.";
+            lbThongBaoXoa.ForeColor = System.Drawing.Color.Green;
         }
     }
 }

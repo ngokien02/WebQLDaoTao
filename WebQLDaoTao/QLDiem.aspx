@@ -54,6 +54,7 @@
     <asp:Button ID="btnLuu" runat="server" CssClass="btn btn-success" Text="Lưu điểm" OnClick="btnLuu_Click" />
     <asp:Button ID="btnXoa" runat="server" CssClass="btn btn-danger" Text="Xóa điểm" 
         OnClientClick="return confirm('Bạn có chắc muốn xóa hết điểm đã chọn?')" OnClick="btnXoa_Click" />
+    <asp:Label ID="lbThongBaoXoa" runat="server" Text="" Font-Size="Medium" ></asp:Label>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="QLSV" runat="server">
 </asp:Content>
