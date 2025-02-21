@@ -28,6 +28,8 @@ namespace WebQLDaoTao
                 float diem = float.Parse(((TextBox)gvKetQua.Rows[i].FindControl("txtDiem")).Text);
                 kqDAO.Update(id, diem);
             }
+            lbThongBaoXoa.Text = $"Lưu điểm thành công.";
+            lbThongBaoXoa.ForeColor = System.Drawing.Color.Green;
         }
 
         protected void btnXoa_Click(object sender, EventArgs e)
@@ -46,6 +48,15 @@ namespace WebQLDaoTao
             gvKetQua.DataBind();
             lbThongBaoXoa.Text = $"Đã xóa thành công {count} điểm.";
             lbThongBaoXoa.ForeColor = System.Drawing.Color.Green;
+        }
+
+        protected void cbxChonAll_CheckedChanged(object sender, EventArgs e)
+        {
+            bool check = ((CheckBox)gvKetQua.FooterRow.FindControl("cbxChonAll")).Checked;
+            for (int i = 0; i < Count(); i++)
+            {
+                ((CheckBox)gvKetQua.Rows[i].FindControl("cbxChon")).Checked = check;
+            }
         }
     }
 }
