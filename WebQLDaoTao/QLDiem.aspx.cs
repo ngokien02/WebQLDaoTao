@@ -40,10 +40,10 @@ namespace WebQLDaoTao
                 {
                     int id = int.Parse(gvKetQua.DataKeys[i].Value.ToString());
                     kqDAO.Delete(id);
-                    gvKetQua.DataBind();
                     count++;
                 }
             }
+            gvKetQua.DataBind();
             lbThongBaoXoa.Text = $"Đã xóa thành công {count} điểm.";
             lbThongBaoXoa.ForeColor = System.Drawing.Color.Green;
         }
