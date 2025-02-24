@@ -8,73 +8,13 @@ using WebQLDaoTao.Models;
 
 namespace WebQLDaoTao
 {
-    public partial class QLMonHoc : System.Web.UI.Page
+    public partial class QLMonHoc : Secure
     {
         MonHocDAO mhDAO = new MonHocDAO();
-        protected void Page_Load(object sender, EventArgs e)
-        {
-            if (!Page.IsPostBack)
-            {
-                KhoiTaoDuLieu();
-            }
-        }
+
         protected void ShowModal()
         {
             ScriptManager.RegisterStartupScript(this, GetType(), "ShowModal", "$('#modalThem').modal('show');", true);
-        }
-        private void KhoiTaoDuLieu()
-        {
-            gvMonHoc.DataSource = mhDAO.GetAll();
-            gvMonHoc.DataBind();
-        }
-
-        protected void gvMonHoc_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        protected void gvMonHoc_RowEditing(object sender, GridViewEditEventArgs e)
-        {
-            gvMonHoc.EditIndex = e.NewEditIndex;
-            KhoiTaoDuLieu();
-        }
-
-        protected void gvMonHoc_RowCancelingEdit(object sender, GridViewCancelEditEventArgs e)
-        {
-            gvMonHoc.EditIndex = -1;
-            KhoiTaoDuLieu();
-        }
-
-        protected void gvMonHoc_RowUpdating(object sender, GridViewUpdateEventArgs e)
-        {
-            string mamh = gvMonHoc.DataKeys[e.RowIndex].Value.ToString();
-            string tenmh = ((TextBox)gvMonHoc.Rows[e.RowIndex].Cells[1].Controls[0]).Text;
-            int sotiet = int.Parse(((TextBox)gvMonHoc.Rows[e.RowIndex].Cells[2].Controls[0]).Text);
-
-            MonHoc mh = new MonHoc { MaMH = mamh, TenMH = tenmh, SoTiet = sotiet };
-            mhDAO.Update(mamh, tenmh, sotiet);
-            gvMonHoc.EditIndex = -1;
-            gvMonHoc.DataSource = mhDAO.GetAll();
-            gvMonHoc.DataBind();
-        }
-
-        protected void gvMonHoc_RowDeleting(object sender, GridViewDeleteEventArgs e)
-        {
-            try
-            {
-                //b1. lấy thông tin mã môn học hiện hành
-                string mamh = gvMonHoc.DataKeys[e.RowIndex].Value.ToString();
-                //b2. goi phương thức xóa môn học khỏi CSDL của lớp MonHocDAO
-                mhDAO.Delete(mamh);
-                //b4. lien ket lai du lieu cho gvMonHoc
-                gvMonHoc.DataSource = mhDAO.GetAll();
-                gvMonHoc.DataBind();
-            }
-            catch (Exception ex)
-            {
-                lbError.Text = "Không thể xóa môn học này do đã có điểm được lưu.";
-                return;
-            }
         }
 
         protected void btnModal_Click(object sender, EventArgs e)
@@ -109,24 +49,42 @@ namespace WebQLDaoTao
                     return;
                 }
                 //goi phuong thuc them mon hoc vao CSDL cua lop MonHocDAO
-                mhDAO.Insert(mh);//lenh them du lieu
+                mhDAO.Insert(mamh, tenmh, sotiet);//lenh them du lieu
                 ShowModal();
                 lbThongBao.Text = "Đã thêm 1 môn học";
                 lbThongBao.ForeColor = System.Drawing.Color.Green;
+                gvMonHoc.DataBind();
             }
             catch (Exception ex)
             {
                 ShowModal();
                 lbThongBao.Text = "Thao tác thêm môn học không thành công do lỗi dữ liệu";
             }
-            //liên kết dữ liệu cho gvMonHoc
-            KhoiTaoDuLieu();
         }
 
-        protected void gvMonHoc_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        protected void odsMonHoc_Deleted(object sender, ObjectDataSourceStatusEventArgs e)
         {
-            gvMonHoc.PageIndex = e.NewPageIndex;
-            KhoiTaoDuLieu();
+            lbError.ForeColor = System.Drawing.Color.Red;
+            if (e.ReturnValue != null && int.TryParse(e.ReturnValue.ToString(), out int result))
+            {
+                if (result == -1)
+                {
+                    lbError.Text = "Không thể xóa môn học do đã có sinh viên dự thi.";
+                }
+                else if (result == 0)
+                {
+                    lbError.Text = "Không tìm thấy môn học cần xóa.";
+                }
+                else
+                {
+                    lbError.Text = "Xóa thành công.";
+                    lbError.ForeColor = System.Drawing.Color.Green;
+                }
+            }
+            else
+            {
+                lbError.Text = "Đã xảy ra lỗi không xác định.";
+            }
         }
     }
 }

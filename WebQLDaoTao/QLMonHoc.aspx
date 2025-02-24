@@ -46,37 +46,60 @@
     </div>
     <div>
         <asp:Button ID="btnModal" runat="server" Text="Thêm môn học mới" CssClass="btn btn-success" OnClick="btnModal_Click" />
-        <asp:GridView DataKeyNames="MaMH" ID="gvMonHoc" runat="server" AutoGenerateColumns="False" OnRowEditing="gvMonHoc_RowEditing"
-            OnSelectedIndexChanged="gvMonHoc_SelectedIndexChanged" OnRowCancelingEdit="gvMonHoc_RowCancelingEdit"
-            OnRowUpdating="gvMonHoc_RowUpdating" CssClass="table" OnRowDeleting="gvMonHoc_RowDeleting" BackColor="White"
-            BorderColor="#3366CC" BorderStyle="None" BorderWidth="1px" CellPadding="4" AllowPaging="True"
-            OnPageIndexChanging="gvMonHoc_PageIndexChanging"
-            PageSize="5">
-            <Columns>
-                <asp:BoundField HeaderText="Mã môn học" DataField="MaMH" ReadOnly="True" />
-                <asp:BoundField HeaderText="Tên môn học" DataField="TenMH" />
-                <asp:BoundField HeaderText="Số tiết" DataField="SoTiet" />
-                <asp:TemplateField>
-                    <ItemTemplate>
-                        <asp:LinkButton ID="btnEdit" runat="server" CommandName="Edit" CssClass="btn btn-success">
-                            <i class="bi bi-pencil-square"></i>Sửa
-                        </asp:LinkButton>
-                        <asp:LinkButton ID="btnDelete" OnClientClick="return confirm('Bạn có chắc muốn xóa môn học này?')" runat="server"
-                            Text="Xóa" CommandName="Delete" CssClass="btn btn-danger">
-                            <i class="bi bi-trash"></i>Xóa
-                        </asp:LinkButton>
-                    </ItemTemplate>
-                    <EditItemTemplate>
-                        <asp:Button ID="btnUpdate" runat="server" Text="Cập nhật" CommandName="Update" CssClass="btn btn-primary" />
-                        <asp:Button ID="btnCancel" runat="server" Text="Hủy" CommandName="Cancel" CssClass="btn btn-warning" />
-                    </EditItemTemplate>
-                </asp:TemplateField>
-            </Columns>
-            <HeaderStyle BackColor="#003399" Font-Bold="True" ForeColor="#CCCCFF" />
-            <PagerStyle BorderColor="#3366CC" BorderStyle="Solid" BorderWidth="1px" Font-Size="Large" HorizontalAlign="Center" VerticalAlign="Middle"
-                CssClass="paging" />
-        </asp:GridView>
-        <asp:Label ID="lbError" ForeColor="#cc3300" runat="server" Text="" Font-Size="Medium"></asp:Label>
+
+        <asp:ObjectDataSource runat="server" ID="odsMonHoc" DeleteMethod="Delete" InsertMethod="Insert" SelectMethod="GetAll"
+            TypeName="WebQLDaoTao.Models.MonHocDAO" UpdateMethod="Update" OnDeleted="odsMonHoc_Deleted">
+            <DeleteParameters>
+                <asp:Parameter Name="mamh" Type="String" />
+            </DeleteParameters>
+            <InsertParameters>
+                <asp:ControlParameter ControlID="txtMaMH" Name="mamh" PropertyName="text" Type="String" />
+                <asp:ControlParameter ControlID="txtTenMH" Name="tenmh" PropertyName="text" Type="String" />
+                <asp:ControlParameter ControlID="txtSoTiet" Name="sotiet" PropertyName="text" Type="Int32" />
+            </InsertParameters>
+            <UpdateParameters>
+                <asp:Parameter Name="mamh" Type="String" />
+                <asp:Parameter Name="tenmh" Type="String" />
+                <asp:Parameter Name="sotiet" Type="Int32" />
+            </UpdateParameters>
+        </asp:ObjectDataSource>
+        <asp:ScriptManager runat="server" ID="sm"></asp:ScriptManager>
+        <asp:UpdatePanel runat="server" ID="up">
+            <ContentTemplate>
+
+                <asp:GridView ID="gvMonHoc" DataKeyNames="mamh" runat="server" AutoGenerateColumns="False" CssClass="table"
+                    BackColor="White" BorderColor="#3366CC" BorderStyle="None" BorderWidth="1px" CellPadding="4" AllowPaging="True"
+                    PageSize="5" DataSourceID="odsMonHoc">
+
+                    <Columns>
+                        <asp:BoundField DataField="MaMH" HeaderText="Mã môn" SortExpression="MaMH" />
+                        <asp:BoundField DataField="TenMH" HeaderText="Tên môn" SortExpression="TenMH" />
+                        <asp:BoundField DataField="SoTiet" HeaderText="Số tiết" SortExpression="SoTiet" />
+                        <asp:TemplateField HeaderText="Thao tác" ItemStyle-Width="250px">
+                            <ItemTemplate>
+                                <asp:LinkButton ID="btnEdit" runat="server" CommandName="Edit" CssClass="btn btn-success">
+<i class="bi bi-pencil-square"></i> Sửa
+                                </asp:LinkButton>
+                                <asp:LinkButton ID="btnDelete" OnClientClick="return confirm('Bạn có chắc muốn xóa môn học này?')"
+                                    runat="server" Text="Xóa" CommandName="Delete" CssClass="btn btn-danger">
+<i class="bi bi-trash"></i> Xóa
+                                </asp:LinkButton>
+                            </ItemTemplate>
+                            <EditItemTemplate>
+                                <asp:Button ID="btnUpdate" runat="server" Text="Cập nhật" CommandName="Update" CssClass="btn btn-primary" />
+                                <asp:Button ID="btnCancel" runat="server" Text="Hủy" CommandName="Cancel" CssClass="btn btn-warning" />
+                            </EditItemTemplate>
+                            <ItemStyle Width="250px"></ItemStyle>
+                        </asp:TemplateField>
+                    </Columns>
+
+                    <HeaderStyle BackColor="#003399" Font-Bold="True" ForeColor="#CCCCFF" />
+                    <PagerStyle BorderColor="#3366CC" BorderStyle="Solid" BorderWidth="1px" Font-Size="Large" HorizontalAlign="Center" VerticalAlign="Middle"
+                        CssClass="paging" />
+                </asp:GridView>
+                <asp:Label ID="lbError" ForeColor="#cc3300" runat="server" Text="" Font-Size="Medium"></asp:Label>
+            </ContentTemplate>
+        </asp:UpdatePanel>
     </div>
     <script>
         document.addEventListener("DOMContentLoaded", function () {

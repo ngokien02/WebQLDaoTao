@@ -8,12 +8,8 @@ using WebQLDaoTao.Models;
 
 namespace WebQLDaoTao
 {
-    public partial class QLKhoa : System.Web.UI.Page
+    public partial class QLKhoa : Secure
     {
-        protected void Page_Load(object sender, EventArgs e)
-        {
-
-        }
         protected void ShowModal()
         {
             ScriptManager.RegisterStartupScript(this, GetType(), "ShowModal", "$('#modalThem').modal('show');", true);

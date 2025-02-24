@@ -8,12 +8,9 @@ using WebQLDaoTao.Models;
 
 namespace WebQLDaoTao
 {
-    public partial class QLDiem : System.Web.UI.Page
+    public partial class QLDiem : Secure
     {
-        protected void Page_Load(object sender, EventArgs e)
-        {
 
-        }
         KetQuaDAO kqDAO = new KetQuaDAO();
         public int Count()
         {
@@ -52,7 +49,7 @@ namespace WebQLDaoTao
 
         protected void cbxChonAll_CheckedChanged(object sender, EventArgs e)
         {
-            bool check = ((CheckBox)gvKetQua.FooterRow.FindControl("cbxChonAll")).Checked;
+            bool check = ((CheckBox)gvKetQua.HeaderRow.FindControl("cbxChonAll")).Checked;
             for (int i = 0; i < Count(); i++)
             {
                 ((CheckBox)gvKetQua.Rows[i].FindControl("cbxChon")).Checked = check;

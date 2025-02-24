@@ -9,13 +9,11 @@ using WebQLDaoTao.Models;
 
 namespace WebQLDaoTao
 {
-    public partial class QLSinhVien : System.Web.UI.Page
+    public partial class QLSinhVien : Secure
     {
-        protected void Page_Load(object sender, EventArgs e)
-        {
 
-        }
         SinhVienDAO sinhVienDAO = new SinhVienDAO();
+
         protected void ShowModal()
         {
             ScriptManager.RegisterStartupScript(this, GetType(), "ShowModal", "$('#modalThem').modal('show');", true);

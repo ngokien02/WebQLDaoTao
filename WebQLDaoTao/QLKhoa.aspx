@@ -42,6 +42,7 @@
     <asp:Button ID="btnModal" runat="server" Text="Thêm khoa mới" CssClass="btn btn-success"
         OnClick="btnModal_Click" />
     <%-- su dung objectdatasource de lien ket du lieu --%>
+
     <asp:ObjectDataSource ID="odsKhoa" runat="server"
         DeleteMethod="Delete" InsertMethod="Insert" SelectMethod="GetAll" TypeName="WebQLDaoTao.Models.KhoaDAO"
         UpdateMethod="Update" OnDeleted="odsKhoa_Deleted">
@@ -50,33 +51,38 @@
             <asp:Parameter Name="tenkh" Type="String" />
         </InsertParameters>
     </asp:ObjectDataSource>
-    <asp:GridView runat="server" ID="gvKhoa" AllowPaging="True" DataSourceID="odsKhoa" DataKeyNames="MAKH"
-        CssClass="table" BackColor="White" BorderColor="#3366CC" BorderStyle="None" BorderWidth="1px"
-        CellPadding="4" AutoGenerateColumns="False" Width="700px">
-        <Columns>
-            <asp:BoundField HeaderText="Mã khoa" DataField="MAKH" ReadOnly="True" />
-            <asp:BoundField HeaderText="Tên khoa" DataField="TENKH" />
-            <asp:TemplateField HeaderText="Thao tác" ItemStyle-Width="250px">
-                <ItemTemplate>
-                    <asp:LinkButton ID="btnEdit" runat="server" CommandName="Edit" CssClass="btn btn-success">
-                <i class="bi bi-pencil-square"></i> Sửa
-                    </asp:LinkButton>
-                    <asp:LinkButton ID="btnDelete" OnClientClick="return confirm('Bạn có chắc muốn xóa khoa này?')"
-                        runat="server" Text="Xóa" CommandName="Delete" CssClass="btn btn-danger">
-                <i class="bi bi-trash"></i> Xóa
-                    </asp:LinkButton>
-                </ItemTemplate>
-                <EditItemTemplate>
-                    <asp:Button ID="btnUpdate" runat="server" Text="Cập nhật" CommandName="Update" CssClass="btn btn-primary" />
-                    <asp:Button ID="btnCancel" runat="server" Text="Hủy" CommandName="Cancel" CssClass="btn btn-warning" />
-                </EditItemTemplate>
-            </asp:TemplateField>
-        </Columns>
-        <HeaderStyle BackColor="#003399" Font-Bold="True" ForeColor="#CCCCFF" />
-        <PagerStyle BorderColor="#3366CC" BorderStyle="Solid" BorderWidth="1px" Font-Size="Large"
-            HorizontalAlign="Center" VerticalAlign="Middle" CssClass="paging" />
-    </asp:GridView>
-    <asp:Label ID="lbError" runat="server" ForeColor="Red" Font-Size="Medium"></asp:Label>
+    <asp:ScriptManager runat="server" ID="sm"></asp:ScriptManager>
+    <asp:UpdatePanel runat="server" ID="up">
+        <ContentTemplate>
+            <asp:GridView runat="server" ID="gvKhoa" AllowPaging="True" DataSourceID="odsKhoa" DataKeyNames="MAKH"
+                CssClass="table" BackColor="White" BorderColor="#3366CC" BorderStyle="None" BorderWidth="1px"
+                CellPadding="4" AutoGenerateColumns="False" Width="700px">
+                <Columns>
+                    <asp:BoundField HeaderText="Mã khoa" DataField="MAKH" ReadOnly="True" />
+                    <asp:BoundField HeaderText="Tên khoa" DataField="TENKH" />
+                    <asp:TemplateField HeaderText="Thao tác" ItemStyle-Width="250px">
+                        <ItemTemplate>
+                            <asp:LinkButton ID="btnEdit" runat="server" CommandName="Edit" CssClass="btn btn-success">
+                            <i class="bi bi-pencil-square"></i>Sửa
+                            </asp:LinkButton>
+                            <asp:LinkButton ID="btnDelete" OnClientClick="return confirm('Bạn có chắc muốn xóa khoa này?')"
+                                runat="server" Text="Xóa" CommandName="Delete" CssClass="btn btn-danger">
+                            <i class="bi bi-trash"></i>Xóa
+                            </asp:LinkButton>
+                        </ItemTemplate>
+                        <EditItemTemplate>
+                            <asp:Button ID="btnUpdate" runat="server" Text="Cập nhật" CommandName="Update" CssClass="btn btn-primary" />
+                            <asp:Button ID="btnCancel" runat="server" Text="Hủy" CommandName="Cancel" CssClass="btn btn-warning" />
+                        </EditItemTemplate>
+                    </asp:TemplateField>
+                </Columns>
+                <HeaderStyle BackColor="#003399" Font-Bold="True" ForeColor="#CCCCFF" />
+                <PagerStyle BorderColor="#3366CC" BorderStyle="Solid" BorderWidth="1px" Font-Size="Large"
+                    HorizontalAlign="Center" VerticalAlign="Middle" CssClass="paging" />
+            </asp:GridView>
+            <asp:Label ID="lbError" runat="server" ForeColor="Red" Font-Size="Medium"></asp:Label>
+        </ContentTemplate>
+    </asp:UpdatePanel>
     <script>
         document.addEventListener("DOMContentLoaded", function () {
             document.getElementById("<%= btnThem.ClientID %>").addEventListener("click", function (event) {
