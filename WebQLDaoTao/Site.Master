@@ -49,12 +49,14 @@
                             {
                                 string username = Session["username"].ToString(); %>
                         <li style="margin-left: 600px;"><a href="#">Welcome <%= username %></a></li>
-                        <li style="margin:8px 0;"><asp:Button runat="server" ID="btnLogout" Text="Đăng xuất" CssClass="btn btn-danger" OnClick="btnLogout_Click" /></li>
+                        <li style="margin: 8px 0;">
+                            <asp:Button runat="server" ID="btnLogout" Text="Đăng xuất" CssClass="btn btn-danger" OnClick="btnLogout_Click" /></li>
                         <% } %>
                     </ul>
                 </div>
             </div>
         </nav>
+
         <div class="container" style="min-height: 600px; padding: 5px">
             <div class="row">
                 <div class="col-md-3">
