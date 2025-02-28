@@ -13,7 +13,7 @@ namespace WebQLDaoTao
         {
             if (Session["username"] == null)
             {
-                Response.Redirect("Login.aspx");
+                Response.Redirect("Default.aspx");
             }
         }
     }
