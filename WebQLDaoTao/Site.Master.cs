@@ -17,6 +17,7 @@ namespace WebQLDaoTao
         protected void btnLogout_Click(object sender, EventArgs e)
         {
             Session.Remove("username");
+            Session.Remove("role");
             Response.Redirect("Default.aspx");
         }
     }

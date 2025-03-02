@@ -78,5 +78,3 @@
     </asp:UpdatePanel>
 
 </asp:Content>
-<asp:Content ID="Content3" ContentPlaceHolderID="QLSV" runat="server">
-</asp:Content>

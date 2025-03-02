@@ -14,6 +14,13 @@ namespace WebQLDaoTao
             if (Session["username"] == null)
             {
                 Response.Redirect("Default.aspx");
+            } else
+            {
+                if (Session["role"].ToString() == "SINHVIEN")
+                {
+                    Response.Write("<script> alert('Chức năng này chỉ dành cho cán bộ đào tạo!'); " +
+                        "window.location='Default.aspx';</script>");
+                }
             }
         }
     }

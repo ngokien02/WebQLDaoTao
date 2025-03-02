@@ -43,7 +43,7 @@
                         <% 
                             if (Session["username"] == null)
                             { %>
-                        <li style="margin-left: 600px;"><a href="Login.aspx">Đăng nhập</a></li>
+                        <li style="margin-left: 600px;"><a href="Default.aspx">Đăng nhập</a></li>
                         <% }
                             else
                             {
@@ -51,7 +51,7 @@
                         <li style="margin-left: 600px;"><a href="#">Welcome <%= username %></a></li>
                         <li style="margin: 8px 0;">
                             <asp:Button runat="server" ID="btnLogout" Text="Đăng xuất" CssClass="btn btn-danger" OnClick="btnLogout_Click" /></li>
-                        <% } %>
+                        <% }%>
                     </ul>
                 </div>
             </div>
@@ -72,10 +72,6 @@
                     <asp:ContentPlaceHolder ID="Main" runat="server">
                     </asp:ContentPlaceHolder>
                 </div>
-            </div>
-            <div>
-                <asp:ContentPlaceHolder ID="QLSV" runat="server">
-                </asp:ContentPlaceHolder>
             </div>
         </div>
 

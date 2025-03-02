@@ -25,6 +25,7 @@ namespace WebQLDaoTao
             if (check != null)
             {
                 Session["username"] = username;
+                Session["role"] = check.role;
                 Response.Redirect("Default.aspx");
             }
             else
