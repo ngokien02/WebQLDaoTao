@@ -51,7 +51,8 @@
                         <li style="margin-left: 600px;"><a href="#">Welcome <%= username %></a></li>
                         <li style="margin: 8px 0;">
                             <asp:Button runat="server" ID="btnLogout" Text="Đăng xuất" CssClass="btn btn-danger" OnClick="btnLogout_Click" /></li>
-                        <% }%>
+                        <% }
+%>
                     </ul>
                 </div>
             </div>

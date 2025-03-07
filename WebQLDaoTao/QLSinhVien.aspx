@@ -122,7 +122,7 @@
 
                 <asp:GridView ID="gvSinhVien" runat="server" AllowPaging="True" CssClass="table"
                     BackColor="White" BorderColor="#3366CC" BorderStyle="None" BorderWidth="1px" CellPadding="4"
-                    Width="1000px" RowStyle-Wrap="false" AutoGenerateColumns="False" DataKeyNames="Masv"
+                    Width="100%" RowStyle-Wrap="false" AutoGenerateColumns="False" DataKeyNames="Masv"
                     DataSourceID="odsSinhVien" OnRowUpdating="gvSinhVien_RowUpdating" OnRowDataBound="gvSinhVien_RowDataBound">
 
                     <Columns>
