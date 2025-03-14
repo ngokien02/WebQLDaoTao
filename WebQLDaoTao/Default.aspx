@@ -27,6 +27,8 @@
             <asp:Button runat="server" ID="btnLogin" type="submit" class="btn btn-primary" Text="Login" 
                 Font-Size="Large" OnClick="btnLogin_Click" />
         </div>
+        <asp:Label runat="server" ID="lbtk" ForeColor="Red" Font-Size="30px">CBDT: username: kien - pass: 123</asp:Label><br />
+        <asp:Label runat="server" ID="lbmk" ForeColor="Red" Font-Size="30px">SINHVIEN: username: tai - pass: 321</asp:Label><br />
     </div>
     <% }
         else
